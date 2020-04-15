@@ -9,6 +9,12 @@ repos:
       - id: trailing-whitespace
         files: (^|/).+\.(py|html|sh|css|js)$
 
+
+-   repo: https://github.com/psf/black
+    rev: 19.3b0
+    hooks:
+    -   id: black
+
 -   repo: local
     hooks:
       - id: flake8
@@ -17,4 +23,3 @@ repos:
         language: python
         types: [python]
         args: ['--config=setup.cfg']
-

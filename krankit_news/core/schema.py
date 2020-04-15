@@ -8,21 +8,20 @@ from krankit_news.core.models import Post, Comment
 class PostNode(DjangoObjectType):
     class Meta:
         model = Post
-        filter_fields = ['title', 'slug', 'author', 'created_on', 'updated_on']
-        interfaces = (relay.Node, )
-
+        filter_fields = ["title", "slug", "author", "created_on", "updated_on"]
+        interfaces = (relay.Node,)
 
 
 class CommentNode(DjangoObjectType):
     class Meta:
         model = Comment
         filter_fields = {
-            'content': ['exact', 'icontains', 'istartswith'],
-            'owner': ['exact'],
-            'post': ['exact'],
-            'post__slug': ['exact'],
+            "content": ["exact", "icontains", "istartswith"],
+            "owner": ["exact"],
+            "post": ["exact"],
+            "post__slug": ["exact"],
         }
-        interfaces = (relay.Node, )
+        interfaces = (relay.Node,)
 
 
 class Query(ObjectType):
