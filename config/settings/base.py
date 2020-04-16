@@ -71,7 +71,7 @@ THIRD_PARTY_APPS = [
     "django_celery_beat",
     "rest_framework",
     "rest_framework.authtoken",
-    'graphene_django',
+    "graphene_django",
 ]
 
 LOCAL_APPS = [
@@ -120,9 +120,6 @@ AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.CommonPasswordValidator"},
     {"NAME": "django.contrib.auth.password_validation.NumericPasswordValidator"},
 ]
-GRAPHENE = {
-    'SCHEMA': 'django_root.schema.schema'
-}
 # MIDDLEWARE
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#middleware
@@ -306,6 +303,4 @@ REST_FRAMEWORK = {
 # GraphQL
 # -------------------------------------------------------------------------------
 # graphene-django - https://docs.graphene-python.org/projects/django/en/latest/installation/
-GRAPHENE = {
-    'SCHEMA': 'krankit_news.schema.schema'
-}
+GRAPHENE = {"SCHEMA": "krankit_news.schema.schema"}
