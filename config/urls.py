@@ -17,7 +17,7 @@ urlpatterns = [
     # Django Admin, use {% url 'admin:index' %}
     path(settings.ADMIN_URL, admin.site.urls),
     # User management
-    path("users/", include("krankit_news.users.urls", namespace="users")),
+    path("users/", include("krankit.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
@@ -29,9 +29,7 @@ urlpatterns += [
     path("auth-token/", obtain_auth_token),
 ]
 # GraphQL URLS
-urlpatterns += [
-    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
-]
+urlpatterns += [path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True)))]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit

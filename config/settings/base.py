@@ -6,8 +6,8 @@ from pathlib import Path
 import environ
 
 ROOT_DIR = Path(__file__).parents[2]
-# krankit_news/)
-APPS_DIR = ROOT_DIR / "krankit_news"
+# krankit/)
+APPS_DIR = ROOT_DIR / "krankit"
 env = environ.Env()
 
 READ_DOT_ENV_FILE = env.bool("DJANGO_READ_DOT_ENV_FILE", default=False)
@@ -75,9 +75,11 @@ THIRD_PARTY_APPS = [
 ]
 
 LOCAL_APPS = [
-    "krankit_news.users.apps.UsersConfig",
-    "krankit_news.core.apps.CoreConfig",
-    # Your stuff: custom apps go here
+    "krankit.users.apps.UsersConfig",
+    "krankit.blog.apps.BlogConfig",
+    "krankit.interactions.apps.InteractionsConfig",
+    "krankit.links.apps.LinksConfig",
+    "krankit.polls.apps.PollsConfig",
 ]
 # https://docs.djangoproject.com/en/dev/ref/settings/#installed-apps
 INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
@@ -85,7 +87,7 @@ INSTALLED_APPS = DJANGO_APPS + THIRD_PARTY_APPS + LOCAL_APPS
 # MIGRATIONS
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#migration-modules
-MIGRATION_MODULES = {"sites": "krankit_news.contrib.sites.migrations"}
+MIGRATION_MODULES = {"sites": "krankit.contrib.sites.migrations"}
 
 # AUTHENTICATION
 # ------------------------------------------------------------------------------
@@ -182,7 +184,7 @@ TEMPLATES = [
                 "django.template.context_processors.static",
                 "django.template.context_processors.tz",
                 "django.contrib.messages.context_processors.messages",
-                "krankit_news.utils.context_processors.settings_context",
+                "krankit.utils.context_processors.settings_context",
             ],
         },
     }
@@ -285,9 +287,9 @@ ACCOUNT_EMAIL_REQUIRED = True
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
 ACCOUNT_EMAIL_VERIFICATION = "mandatory"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-ACCOUNT_ADAPTER = "krankit_news.users.adapters.AccountAdapter"
+ACCOUNT_ADAPTER = "krankit.users.adapters.AccountAdapter"
 # https://django-allauth.readthedocs.io/en/latest/configuration.html
-SOCIALACCOUNT_ADAPTER = "krankit_news.users.adapters.SocialAccountAdapter"
+SOCIALACCOUNT_ADAPTER = "krankit.users.adapters.SocialAccountAdapter"
 
 # django-rest-framework
 # -------------------------------------------------------------------------------
@@ -303,4 +305,4 @@ REST_FRAMEWORK = {
 # GraphQL
 # -------------------------------------------------------------------------------
 # graphene-django - https://docs.graphene-python.org/projects/django/en/latest/installation/
-GRAPHENE = {"SCHEMA": "krankit_news.schema.schema"}
+GRAPHENE = {"SCHEMA": "krankit.schema.schema"}

@@ -24,8 +24,8 @@ if __name__ == "__main__":
         raise
 
     # This allows easy placement of apps within the interior
-    # krankit_news directory.
+    # krankit directory.
     current_path = Path(__file__).parent.resolve()
-    sys.path.append(str(current_path / "krankit_news"))
+    sys.path.append(str(current_path / "krankit"))
 
     execute_from_command_line(sys.argv)

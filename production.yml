@@ -10,7 +10,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/django/Dockerfile
-    image: krankit_news_production_django
+    image: krankit_production_django
     depends_on:
       - postgres
       - redis
@@ -23,7 +23,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: krankit_news_production_postgres
+    image: krankit_production_postgres
     volumes:
       - production_postgres_data:/var/lib/postgresql/data
       - production_postgres_data_backups:/backups
@@ -34,7 +34,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/traefik/Dockerfile
-    image: krankit_news_production_traefik
+    image: krankit_production_traefik
     depends_on:
       - django
     volumes:
@@ -49,17 +49,17 @@ services:
 
   celeryworker:
     <<: *django
-    image: krankit_news_production_celeryworker
+    image: krankit_production_celeryworker
     command: /start-celeryworker
 
   celerybeat:
     <<: *django
-    image: krankit_news_production_celerybeat
+    image: krankit_production_celerybeat
     command: /start-celerybeat
 
   flower:
     <<: *django
-    image: krankit_news_production_flower
+    image: krankit_production_flower
     command: /start-flower
 
   

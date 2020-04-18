@@ -9,7 +9,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/local/django/Dockerfile
-    image: krankit_news_local_django
+    image: krankit_local_django
     depends_on:
       - postgres
       - mailhog
@@ -26,7 +26,7 @@ services:
     build:
       context: .
       dockerfile: ./compose/production/postgres/Dockerfile
-    image: krankit_news_production_postgres
+    image: krankit_production_postgres
     volumes:
       - local_postgres_data:/var/lib/postgresql/data
       - local_postgres_data_backups:/backups
@@ -43,7 +43,7 @@ services:
 
   celeryworker:
     <<: *django
-    image: krankit_news_local_celeryworker
+    image: krankit_local_celeryworker
     depends_on:
       - redis
       - postgres
@@ -53,7 +53,7 @@ services:
 
   celerybeat:
     <<: *django
-    image: krankit_news_local_celerybeat
+    image: krankit_local_celerybeat
     depends_on:
       - redis
       - postgres
@@ -63,7 +63,7 @@ services:
 
   flower:
     <<: *django
-    image: krankit_news_local_flower
+    image: krankit_local_flower
     ports:
       - "5555:5555"
     command: /start-flower
