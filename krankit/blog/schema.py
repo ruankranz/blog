@@ -57,5 +57,21 @@ class CreatePost(graphene.relay.ClientIDMutation):
         return CreatePost(post=post)
 
 
+class CreateComment(graphene.relay.ClientIDMutation):
+    comment = graphene.Field(PostNode)
+
+    class Input:
+        content = graphene.String()
+
+    def mutate_and_get_payload(root, info, **input):
+        user = info.context.user or None
+
+        comment = PostComment(content=input.get("content"), user=user)
+        comment.save()
+
+        return CreateComment(comment=comment)
+
+
 class Mutation(graphene.AbstractType):
     create_post = CreatePost.Field()
+    create_comment = CreateComment.Field()
