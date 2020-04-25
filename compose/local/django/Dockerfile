@@ -8,6 +8,8 @@ RUN apt-get update \
   && apt-get install -y build-essential \
   # psycopg2 dependencies
   && apt-get install -y libpq-dev \
+  # install psql opeing a dbshell
+  && apt-get install -y postgresql-client \
   # Translations dependencies
   && apt-get install -y gettext \
   # cleaning up unused files

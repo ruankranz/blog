@@ -93,6 +93,7 @@ MIGRATION_MODULES = {"sites": "krankit.contrib.sites.migrations"}
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#authentication-backends
 AUTHENTICATION_BACKENDS = [
+    "graphql_jwt.backends.JSONWebTokenBackend",
     "django.contrib.auth.backends.ModelBackend",
     "allauth.account.auth_backends.AuthenticationBackend",
 ]
@@ -305,4 +306,7 @@ REST_FRAMEWORK = {
 # GraphQL
 # -------------------------------------------------------------------------------
 # graphene-django - https://docs.graphene-python.org/projects/django/en/latest/installation/
-GRAPHENE = {"SCHEMA": "krankit.schema.schema"}
+GRAPHENE = {
+    "SCHEMA": "krankit.schema.schema",
+    "MIDDLEWARE": ["graphql_jwt.middleware.JSONWebTokenMiddleware"],
+}

@@ -20,3 +20,4 @@ django-filter==2.2.0 # https://django-filter.readthedocs.io/en/master/
 djangorestframework==3.11.0  # https://github.com/encode/django-rest-framework
 # Django graphene
 graphene-django==2.9.1 # https://github.com/graphql-python/graphene-django
+django-graphql-jwt==0.3.1
