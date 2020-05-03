@@ -8,7 +8,7 @@ before_install:
   - sudo apt-get install -qq graphviz-dev python-setuptools python3-dev python-virtualenv python-pip
   - sudo apt-get install -qq firefox automake libtool libreadline6 libreadline6-dev libreadline-dev
   - sudo apt-get install -qq libsqlite3-dev libxml2 libxml2-dev libssl-dev libbz2-dev wget curl llvm
- before_script:
+before_script:
   - psql -c "CREATE DATABASE test_db;" -U postgres
 language: python
 python:
@@ -17,3 +17,6 @@ install:
   - pip install -r requirements/local.txt
 script:
   - "pytest"
+cache: pip
+env:
+  - DATABASE_URL=postgres://postgres@localhost/test_db CELERY_BROKER_URL=redis://redis:6379/0 CACHE_URL=redis://redis:6379/1
