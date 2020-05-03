@@ -11,6 +11,7 @@ class Comment(BaseModel):
     user = models.ForeignKey(
         settings.AUTH_USER_MODEL, on_delete=models.CASCADE, related_name="comments"
     )
+    active = models.BooleanField(_("Is active"), default=False)
 
     class Meta:
         verbose_name = _("Comment")

@@ -10,7 +10,6 @@ from graphene_django.views import GraphQLView
 
 
 urlpatterns = [
-    path("", TemplateView.as_view(template_name="pages/home.html"), name="home"),
     path(
         "about/", TemplateView.as_view(template_name="pages/about.html"), name="about"
     ),
@@ -20,6 +19,7 @@ urlpatterns = [
     path("users/", include("krankit.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("", include("krankit.blog.urls"), name="home"),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 # API URLS
 urlpatterns += [
@@ -27,9 +27,9 @@ urlpatterns += [
     path("api/", include("config.api_router")),
     # DRF auth token
     path("auth-token/", obtain_auth_token),
+    # GraphQL URLS
+    path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True))),
 ]
-# GraphQL URLS
-urlpatterns += [path("graphql", csrf_exempt(GraphQLView.as_view(graphiql=True)))]
 
 if settings.DEBUG:
     # This allows the error pages to be debugged during development, just visit
