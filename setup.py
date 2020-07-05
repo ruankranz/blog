@@ -1,14 +1,14 @@
 import setuptools
 from package import Package
 
-with open("README.md", "r") as fh:
+with open("README.rst", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="krankit-blog-pkg-ruank",  # Replace with your own username
+    name="krankit-blog-pkg",
     version="0.0.1",
     author="Ruan Kranz",
-    author_email="ruan@krankit.co.za",
+    author_email="admin@krankit.co.za",
     description="The life and times of krankit",
     long_description=long_description,
     long_description_content_type="text/markdown",
